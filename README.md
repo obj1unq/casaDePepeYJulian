@@ -62,8 +62,8 @@ Agregar el método `comprarLoQueFalta()`: Que recorre la lista de las cosas que 
 ## Tests 
 1. Realizar un test para verficar que si tengo $1000 y quiero sacar $900, lo puedo hacer.
 1. Realizar un test con un saldo de $1000 e intentar sacar $1200.
-1. Testear que si tengo $1000 de saldo, puedo comprar un tira de asado.
-1. Testear que si tengo $1000 de saldo, no puedo comprar una planta.
+1. Testear que si tengo $1000 de saldo, puedo comprar un tira de asado, tengo una cosa en la lista de cosas compradas y al saldo se le restó el precio de la tira de asado.
+1. Testear que si tengo $1000 de saldo, no puedo comprar una plancha, por lo tanto la lista de cosas compradas queda vacío, y el el saldo no se modificó.
 
 
 
