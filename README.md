@@ -53,7 +53,7 @@ Inlcuir las cuentas en los gastos de la casa:
 Agregar en la casa los métodos `gastar(importe)`, que hace la extracción de la cuenta que esté usando, y `dineroDisponible()`, que es el saldo de la cuenta. 
 Modificar el método `comprar(cosa)` para que además de lo que esté haciendo, registre el gasto por el precio de la cosa que se está comprando. P.ej. comprar la tira de asado implica gastar 350 pesos.
 
-# Segunda etapa:
+### Segunda etapa:
 Modificar la **cuenta corriente** para que el saldo nunca pueda ser negativo, si el valor que se desea extraer mayor al disponible, entonces la extracción no se puede realizar, es decir, si tengo $500, y necesito extraer $600, entonces la extracción no se puede realizar.
 
 Agregar el método `comprarLoQueFalta()`: Que recorre la lista de las cosas que faltan y las compra.
