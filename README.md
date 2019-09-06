@@ -48,9 +48,24 @@ P.ej. supongamos que configuramos la cuenta combinada así: la primaria es la cu
 	- El _saldo_ de la cuenta combinada es 203000 pesos.
 	- Si se _depositan_ 1000 pesos en la cuenta combinada, van a la cuenta corriente (porque es la primaria), al depositarse este importe, su saldo pasa a 4000. 
 	- Si se _extraen_ 500 pesos, salen de la cuenta corriente que es la primaria. Si se extraen 10000, salen de la cuenta con gastos, porque el saldo de la cuenta corriente no es suficiente.
-
+	
+Inlcuir las cuentas en los gastos de la casa:
 Agregar en la casa los métodos `gastar(importe)`, que hace la extracción de la cuenta que esté usando, y `dineroDisponible()`, que es el saldo de la cuenta. 
 Modificar el método `comprar(cosa)` para que además de lo que esté haciendo, registre el gasto por el precio de la cosa que se está comprando. P.ej. comprar la tira de asado implica gastar 350 pesos.
+
+Segunda etapa:
+Modificar la **cuenta corriente** para que el saldo nunca pueda ser negativo, si el valor que se desea extraer mayor al disponible, entonces la extracción no se puede realizar, es decir, si tengo $500, y necesito extraer $600, entonces la extracción no se puede realizar.
+
+Agregar el método `comprarLoQueFalta()`: Que recorre la lista de las cosas que faltan y las compra.
+
+
+## Tests 
+1. Realizar un test para verficar que si tengo $1000 y quiero sacar $900, lo puedo hacer.
+1. Realizar un test con un saldo de $1000 e intentar sacar $1200.
+1. Testear que si tengo $1000 de saldo, puedo comprar un tira de asado.
+1. Testear que si tengo $1000 de saldo, no puedo comprar una planta.
+
+
 
 <br>
 
