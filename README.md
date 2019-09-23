@@ -1,6 +1,4 @@
 # Casa de Pepe y Julián
- 
-[![Build Status](https://travis-ci.org/wollok/casaDePepeYJulian.svg?branch=master)](https://travis-ci.org/wollok/casaDePepeYJulian)
 
 Pepe y Julián viven juntos, y les gusta comprar cosas. 
 De cada cosa nos interesa el precio, si es comida o no, y si es un electrodoméstico o no.
@@ -64,18 +62,6 @@ Agregar el método `comprarLoQueFalta()`: Que recorre la lista de las cosas que 
 1. Realizar un test con un saldo de $1000 e intentar sacar $1200.
 1. Testear que si tengo $1000 de saldo, puedo comprar un tira de asado, tengo una cosa en la lista de cosas compradas y al saldo se le restó el precio de la tira de asado.
 1. Testear que si tengo $1000 de saldo, no puedo comprar una plancha, por lo tanto la lista de cosas compradas queda vacío, y el el saldo no se modificó.
-
-
-
-<br>
-
-## Test complejo
-
-
-<!-- 
-1. una *cuenta en dólares*, mantiene su saldo en dólares. Cuando se deposita el importe se indica en pesos, el saldo debe aumentar en `importe / dolar.precioDeVenta()`. P.ej. si el precio de venta del dólar es 35 pesos y deposito 700 pesos, al saldo se suman 20 dólares. Cuando extraigo, se resta según el precio de compra, o sea el saldo disminuye en `importe / dolar.precioDeCompra()`. P.ej. si el precio de compra es 34 pesos y retiro 1020, el saldo disminuye en 30 dólares. Para devolver el `saldo()` se usa el precio de compra, p.ej. si el saldo en dólares es 100, entonces si a la cuenta le pido `saldo()` me tiene que devolver 
--->
-
 
 
 
