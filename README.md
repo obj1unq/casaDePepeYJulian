@@ -1,61 +1,74 @@
-# Casa de Pepe y Julián
+# Casa de Pepe y Julián (Con colecciones)
 
-Pepe y Julián viven juntos, y les gusta comprar cosas. 
-De cada cosa nos interesa el precio, si es comida o no, y si es un electrodoméstico o no.
+Pepe y Julián viven juntos, y nos pidieron que les ayudemos con un sistema para administrar los gastos de la casa.
+
+> **Aclaración**: Para este enunciado se pide tanto la implementación de los objetos que resuelven los requerimientos planteados, como los tests descriptos en los _casos de prueba_ como mínimo (si quieren hacer más tests también son bienvenidos).
+
+
 
 ## Sobre las cosas que se compran
-En este modelo reducido, vamos a considerar las siguientes cosas que podrían ser interesantes para comprar: una heladera que vale 20000 pesos, una cama que sale 8000, una tira de asado que sale 350 pesos, un paquete de fideos que sale 50 pesos, y una plancha que vale 1200 pesos. Por las dudas aclaramos: la cama no es un electrodoméstico, la plancha sí.
+
+De cada cosa nos interesa el precio y su categoría, que puede ser electrodoméstico, comida o mueble (pero podría haber otras).
+
+En este modelo reducido, vamos a considerar las siguientes cosas que podrían ser interesantes para comprar: 
+- una heladera que vale 20000 pesos y es un electrodoméstico 
+- una cama que sale 8000 y es un mueble
+- una tira de asado que sale 350 pesos y es comida
+- un paquete de fideos que sale 50 pesos y es comida
+- una plancha que vale 1200 pesos y es un electrodoméstico
 
 Implementar, además de los objetos que representan cada cosa, un objeto que represente a la casa, que entienda los siguientes mensajes:
 - `comprar(cosa)`: registra que se ha comprado una cosa.
 - `cantidadDeCosasCompradas()`: indica ... eso.
-- `tieneComida()`: indica si compró algo que es comida al menos una vez.
-- `vieneDeEquiparse()`: indica si la _última_ cosa que se compró es un electrodoméstico, o bien vale más de 5000 pesos.
+- `tieneAlgun(categoria)`: indica si compró algo que es corresponde a esa categoría alguna vez.
+- `vieneDeComprar(categoria)`: indica si la _última_ cosa que se compró es de la categoría indicada.
 - `esDerrochona()`: indica si el importe total de las cosas compradas es de 9000 pesos o más.
 - `compraMasCara()`: retorna la cosa comprada de mayor valor.
-- `electrodomésticosComprados()`: devuelve un objeto que contiene todas las cosas compradas que son electrodomésticos. 
+- `comprados(categoría)`: devuelve un objeto que contiene todas las cosas compradas que de esa categoría. 
 - `malaEpoca()`: indica si todas las cosas compradas son comida.
 - `queFaltaComprar(lista)`: recibe una lista de cosas y devuelve las cosas de esa lista que aún no se han comprado. <br>
   **Atención**: es una pregunta. No se pide que se compren. 
 - `faltaComida()`: indica si se han comprado menos de 2 cosas que son comida.
+-  categoríasCompradas(): indica todas las categorías para las cuales se ha realizado al menos una compra
 
+### Ejemplo
 
-## Más cosas
-Agregar las siguientes cosas que pueden comprarse:
-- un kilo de milanesas rebozadas: 260 pesos.
-- una botella de salsa de tomates: 90 pesos.
-- un microondas: 4200 pesos.
-- un kilo de cebollas: 25 pesos.
-- una compu: 500 dólares. Para saber el precio en pesos, multiplicar por la cotización del dólar. Agregar un objeto `dolar` al que se le pueda preguntar el `precioDeVenta()`, alcanza con que devuelva un valor fijo. 
-<!-- Agregar también un `precioDeCompra()` que se va a usar más adelante. Se supone que el precio de compra es un poco menor al de venta, p.ej. si el de venta es 35, el de compra es 34. -->
-- un "pack comida" que incluye un plato (que puede ser tira de asado, fideos o milanesas) y un aderezo (que puede ser la botella de salsa de tomates o el kilo de cebollas. Precio: la suma del precio de sus componentes.
+Hacer que se compre una heladera, una cama y una placha.
+verificar que:
+- la lista de las cosas compradas es heladera, cama y plancha
+- cantidad de cosas compradas es 3
+- tiene algún electrodoméstico
+- tiene algún mueble
+- no tiene alguna comida
+- Si le preguntan si viene de comprar un electrodoméstico dice que sí, pero si le preguntan si viene de comprar un mueble dice que no
+- Es derrochona (ya que gastó 29200)
+- los electrodomésticos compramos son la heladera y la plancha
+- los muebles comprados son: la cama y nada más
+- no hay comida comprada
+- no es una mala época
+- si le preguntamos que falta comprar de una tira de asado, una plancha y un paquete de fideos debe contestar que falta la tira de asado y el paquete de fideos.
+- falta comida
+- las categorías compradas son electrodoméstico y mueble
 
-Pregunta: para lograr que la casa pueda comprar estas cosas nuevas, ¿qué hubo que cambiar en la definición del objeto que representa la casa? Si hay que tocar poco, o nada, ¿qué concepto nos ayuda?
+## Cuentas bancarias
+Pepe y Julián poseen varios tipos de cuentas bancarias, de las cuales pueden conocer su saldo y extraer y depositar dinero:
 
+1. Una **cuenta corriente**, al depositar suma el saldo, al extraer resta.
+2. Una **cuenta con gastos**, también mantiene un saldo y, además, un costo por operación. Al depositar suma el importe indicado menos el costo por operación. Al extraer resta el saldo normalmente.
+> **Caso de Prueba**: para una cuenta vacía con 20 pesos de costo por operación, si se deposita 1000 pesos, el saldo queda en 980 pesos.
+3. Una **cuenta combinada** que tiene dos cuentas, una _primaria_ y una _secundaria_. Si se deposita, el importe pasa a la primaria. Cuando se extrae es así: si la cuenta primaria tiene saldo suficiente se extrae de esa, y si no de la secundaria (vale suponer que la secundaria siempre tiene saldo). El saldo de la combinada es la suma del saldo de las dos.
+> **Caso de Prueba**: suponiendo que configuramos la cuenta combinada así: la primaria es la cuenta con gastos con 50 pesos de costo de operación y la secundaria es la cuenta corriente, ya con 500 pesos de saldo. Luego,
+> - Se _depositan_ 100 pesos en la cuenta combinada (van a la cuenta con gastos, porque es la primaria, depositándose 50 pesos efectivos). 
+> - Si se _extraen_ 200 pesos (salen de la cuenta corriente, ya que a la primaria no le alcanza, dejándola en 300 pesos).
+> - _Verificar_ que el saldo de la cuenta con gastos queda en 50 pesos, la cuenta corriente con 300 pesos y la combindada con 350 pesos.
 
-## Cuenta bancaria
-Agreguemos al modelo objetos que representan diferentes _cuentas bancarias_. Estos objetos deben entender tres mensajes: `depositar(importe)`, `extraer(importe)`, y `saldo()`. 
-Al objeto que representa la casa hay que agregarle un atributo, que es la cuenta que se va a usar para pagar los gastos que se hagan. Por lo tanto, al comprar una cosa, hay que también extraer de la cuenta el precio de la cosa comprada.     
+Ellos asignan una de esas cuentas para gestionar los gastos de la casa. Cada vez que se preduce un gasto en la casa, se extrae de la cuenta asignada el importe correspondiente.
 
-
-Incluir tres cuentas:
-1. una **cuenta corriente**, tiene un atributo que es el saldo, al depositar suma al saldo, al extraer resta.
-1. una **cuenta con gastos**, también mantiene un saldo. Al depositar suma el importe indicado menos 20 pesos que son gastos de la operación. P.ej. si deposito 1000 pesos, el saldo aumenta en 980. Al extraer, si se extraen 1000 pesos o menos hay un cargo de 20 pesos, si se extrae más es el 2% del importe a extraer (o sea, `importe / 50`). Entonces, si se extraen 500 pesos, hay que restar 520 del saldo, y si se extraen 2000, hay que restar 2040 (2000 más 40 que es el 2% de gastos).
-1. una **cuenta combinada** que tiene dos cuentas, una _primaria_ y una _secundaria_. Si se deposita, el importe pasa a la primaria. Si se extrae es así: si la cuenta primaria tiene saldo suficiente se extrae de esa, y si no de la secundaria (vale suponer que la secundaria siempre tiene saldo). El saldo de la combinada es la suma del saldo de las dos. <br>
-P.ej. supongamos que configuramos la cuenta combinada así: la primaria es la cuenta corriente, la secundaria es la cuenta con gastos. Supongamos también que la cuenta corriente tiene 3000 pesos y la cuenta con gastos tiene 200000. Así las cosas:
-	- El _saldo_ de la cuenta combinada es 203000 pesos.
-	- Si se _depositan_ 1000 pesos en la cuenta combinada, van a la cuenta corriente (porque es la primaria), al depositarse este importe, su saldo pasa a 4000. 
-	- Si se _extraen_ 500 pesos, salen de la cuenta corriente que es la primaria. Si se extraen 10000, salen de la cuenta con gastos, porque el saldo de la cuenta corriente no es suficiente.
-	
-Inlcuir las cuentas en los gastos de la casa:
-Agregar en la casa los métodos `gastar(importe)`, que hace la extracción de la cuenta que esté usando, y `dineroDisponible()`, que es el saldo de la cuenta. 
-Modificar el método `comprar(cosa)` para que además de lo que esté haciendo, registre el gasto por el precio de la cosa que se está comprando. P.ej. comprar la tira de asado implica gastar 350 pesos.
-
+#### Se pide que al comprar una cosa  eso se vea afectado en la cuenta elegida previamente.
+ Ejemplo: Si la casa tiene configurada una cuenta corriente con saldo 1000, se compra una tira de asado implica  y un paquete de fideos, entonces la cuenta corriente queda con saldo 600.
+ 
 ### Segunda etapa:
 Modificar la **cuenta corriente** para que el saldo nunca pueda ser negativo, si el valor que se desea extraer mayor al disponible, entonces la extracción no se puede realizar, es decir, si tengo $500, y necesito extraer $600, entonces la extracción no se puede realizar.
-
-Agregar el método `comprarLoQueFalta()`: Que recorre la lista de las cosas que faltan y las compra.
-
 
 ## Tests 
 1. Realizar un test para verficar que si tengo $1000 y quiero sacar $900, lo puedo hacer.
