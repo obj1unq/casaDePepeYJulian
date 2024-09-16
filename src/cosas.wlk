@@ -1,29 +1,34 @@
+object electrodomestico{
+}
+
+object mueble {
+}
+
+object comida {
+
+}
+
 object heladera {
 	method precio() { return 20000 }
-	method esComida() { return false }
-	method esElectrodomestico() { return true }	
+	method categoria() { return electrodomestico }
 }
 
 object cama {
 	method precio() { return 8000 }
-	method esComida() { return false }
-	method esElectrodomestico() { return false }	
+	method categoria() { return mueble }
 }
 
 object tiraDeAsado {
 	method precio() { return 350 }
-	method esComida() { return true }
-	method esElectrodomestico() { return false }	
+	method categoria() { return comida }
 }
 
 object paqueteDeFideos {
 	method precio() { return 50 }
-	method esComida() { return true }
-	method esElectrodomestico() { return false }	
+	method categoria() { return comida }
 }
 
 object plancha {
 	method precio() { return 1200 }
-	method esComida() { return false }
-	method esElectrodomestico() { return true }	
+	method categoria() { return electrodomestico }
 }
